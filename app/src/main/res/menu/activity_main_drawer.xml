@@ -4,7 +4,7 @@
     <group android:id="@+id/grp2" android:checkableBehavior="single" >
         <item
             android:id="@+id/binaryCal"
-            android:title="Binary Calculator" />
+            android:title="Exponent Calculator" />
     </group>
 
     <item

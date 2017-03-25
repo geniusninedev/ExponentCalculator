@@ -17,16 +17,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:layout_marginTop="5dp"
         android:orientation="vertical">
         <TextView
-            android:text="Binary Calculator"
+            android:text="Exponent Calculator"
             android:gravity="center"
             android:textSize="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textStyle="bold"
-            android:textColor="#059733"
+            android:textColor="@color/colorPrimary"
             android:id="@+id/textView" />
         <com.pkmmte.view.CircularImageView
             android:layout_width="150dp"
@@ -34,7 +35,7 @@
             android:id="@+id/imageView"
 
             app:border="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
             app:border_color="#EEEEEE"
             app:border_width="2dp"
             app:shadow="true"
@@ -43,16 +44,16 @@
         <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
         android:layout_height="wrap_content"
         android:gravity="center"
        />
 
         <TextView
-            android:text="“Exercise Is A Celebration Of What Your Body Can Do .Not A Punishment For What You Ate.”"
+            android:text="“Exponent calculator helps you find the result of any base raised to a positive or negative exponent.”"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:textStyle="bold"
             android:gravity="center"
             android:textSize="20dp"

@@ -27,6 +27,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
 import com.geniusnine.android.exponentcalculator.DashBord.GetApp;
@@ -60,6 +63,10 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth.AuthStateListener firebaseAuthListner;
     private DatabaseReference databaseReferenceUserContacts;
 
+    EditText editTextBase,editTextExponent,editTextResult;
+    TextView textViewExponent,textViewEqual;
+    double baseValue;
+    int exponentValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +74,21 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         firebaseAuth = FirebaseAuth.getInstance();
 
+
+        editTextBase=(EditText)findViewById(R.id.editTextBase);
+        editTextExponent=(EditText)findViewById(R.id.editTextExponent);
+        editTextResult=(EditText)findViewById(R.id.editTextResult);
+
+        textViewExponent=(TextView)findViewById(R.id.textViewExponent);
+        textViewEqual=(TextView)findViewById(R.id.textViewresult);
+
+        Button calculate=(Button)findViewById(R.id.buttonCalculate);
+        Button clear=(Button)findViewById(R.id.buttonClear);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+      /*  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +96,7 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-
+*/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -87,6 +105,41 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        calculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ExponentCalci exponentCalci=new ExponentCalci();
+                if(editTextBase.getText().toString().trim().equals("")){
+                    editTextBase.setError("Enter The Base Value ");
+                }
+                if(editTextExponent.getText().toString().trim().equals("")){
+                    editTextExponent.setError("Enter The Exponent Value");
+                }
+                else{
+                    baseValue = Double.parseDouble(editTextBase.getText().toString().trim());
+                    exponentValue=Integer.parseInt(editTextExponent.getText().toString().trim());
+
+
+
+                    double result = exponentCalci.mathPower( baseValue,exponentValue);
+                    textViewEqual.setText(baseValue+" exponent "+exponentValue+" = "+result);
+
+
+                    // sqrRootResult.setText("Given quadratic equation:"+valueOfFirst+"x^2 +  "+ valueOfSecond+ "x +  "+valueOfThird);
+                    // textViewResult.setText(generalRoot  + " Root Of "+  generalRootNumber +"  is:   "+ result);
+                }
+            }
+
+
+        });
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editTextBase.setText("");
+                editTextExponent.setText("");
+            }
+        });
         authenticate();
     }
 
